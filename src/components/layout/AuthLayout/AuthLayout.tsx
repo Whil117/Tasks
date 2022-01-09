@@ -9,7 +9,11 @@ interface IProps {
 }
 
 const AuthLayout: FC<IProps> = ({ children, router }) => {
-	const protectedRoutes = ['/todo/addtodo', '/todo/listtodo']
+	const protectedRoutes = [
+		'/todo/addtodo',
+		'/todo/listtodo',
+		'/todo/viewtodo/[pid]',
+	]
 	const invalidPages = ['/', '/login', '/register']
 	const { authenticated } = useSelector(
 		(state: StateSelector) => state.userReducer

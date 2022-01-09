@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux'
 
 const ViewTodo: FC = () => {
 	const data = useSelector((state: StateSelector) => state.todosReducer)
-	console.log(data)
 
 	return (
 		<div>

@@ -4,11 +4,12 @@ import StateSelector from '@Types/redux/selectors/types'
 import { useSelector } from 'react-redux'
 import AtomImage from '@Atoms/Image'
 import { css } from '@emotion/react'
-interface IProps {}
+import { NextPageContext } from 'next'
+interface IProps {
+	pid: string | string[] | undefined
+}
 
-const ViewTodo: FC<IProps> = props => {
-	const router = useRouter()
-	const { pid } = router.query
+const ViewTodo: FC<IProps> = ({ pid }) => {
 	const data = useSelector((state: StateSelector) =>
 		state.todosReducer.filter(item => item.id === pid)
 	)
@@ -35,5 +36,12 @@ const ViewTodo: FC<IProps> = props => {
 		</div>
 	)
 }
-
+export async function getServerSideProps(context: NextPageContext) {
+	const { pid } = context.query
+	return {
+		props: {
+			pid,
+		},
+	}
+}
 export default ViewTodo
