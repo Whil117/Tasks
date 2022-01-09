@@ -2,6 +2,8 @@ import { FC } from 'react'
 import { useRouter } from 'next/router'
 import StateSelector from '@Types/redux/selectors/types'
 import { useSelector } from 'react-redux'
+import AtomImage from '@Atoms/Image'
+import { css } from '@emotion/react'
 interface IProps {}
 
 const ViewTodo: FC<IProps> = props => {
@@ -17,7 +19,17 @@ const ViewTodo: FC<IProps> = props => {
 					<h1>{item.title}</h1>
 					<p>{item.description}</p>
 					<p>{item.date}</p>
-					<img src={item.image} alt={item.title} />
+					<AtomImage
+						src={item.image}
+						alt={item.title}
+						width={400}
+						height={400}
+						CustomStyle={css`
+							object-fit: cover;
+							object-position: top;
+							border-radius: 10px;
+						`}
+					/>
 				</div>
 			))}
 		</div>

@@ -1,14 +1,14 @@
-import { FC } from 'react'
-import { Formik, Form } from 'formik'
+import { css } from '@emotion/react'
+import { ButtonForm } from '@Styles/pages'
 import {
 	AddTodoFormError,
 	AddTodoFormInput,
 	AddTodoFormLabelText,
 	AddTodoFormWrapper,
 } from '@Styles/pages/todo/addtodo'
-import { ButtonForm } from '@Styles/pages'
-import { css } from '@emotion/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { Form, Formik } from 'formik'
+import { FC } from 'react'
+import { useDispatch } from 'react-redux'
 
 interface IProps {}
 
@@ -122,7 +122,7 @@ const Login: FC<IProps> = props => {
 			</AddTodoFormWrapper>
 
 			<div>
-				<img src='/images/background.png' alt='' />
+				<img src='/images/background.png' alt='' style={{ height: '100%' }} />
 			</div>
 		</AddTodoFormWrapper>
 	)

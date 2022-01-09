@@ -2,6 +2,7 @@ import SvgDynamic from '@Atoms/SvgDynamic'
 import { useRouter } from 'next/router'
 import { FC, useEffect } from 'react'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
 interface IProps {
 	href: string
@@ -24,7 +25,12 @@ const Redirect: FC<IProps> = props => {
 		<SvgDynamicWrapper>
 			<SvgDynamic
 				href='/icons/redirect/loading'
-				styles={{ width: '100px', height: '100px' }}
+				customStyle={css`
+					svg {
+						width: 100px;
+						height: 100px;
+					}
+				`}
 			/>
 		</SvgDynamicWrapper>
 	)

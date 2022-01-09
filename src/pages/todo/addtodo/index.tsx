@@ -172,7 +172,16 @@ const AddTodo: FC = () => {
 								`}
 							>
 								<AddTodoFormLabel htmlFor='image'>
-									<SvgDynamic href='/icons/addtodo' />
+									<SvgDynamic
+										href='/icons/addtodo'
+										customStyle={css`
+											svg {
+												path {
+													fill: black;
+												}
+											}
+										`}
+									/>
 								</AddTodoFormLabel>
 								<AddTodoFormInputImage
 									type='file'

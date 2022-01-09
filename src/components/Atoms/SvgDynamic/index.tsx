@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { FC, useMemo } from 'react'
 import styled from '@emotion/styled'
+import { SerializedStyles } from '@emotion/react'
 
 interface Styles {
 	width?: string
@@ -12,17 +13,11 @@ interface Styles {
 interface IProps {
 	href?: string
 	styles?: Styles
+	customStyle?: SerializedStyles
 }
 
 const SvgDynamicWrapper = styled.div<IProps>`
-	svg {
-		path {
-			fill: ${({ styles }) => (styles && styles.fill) || 'black'};
-		}
-		width: ${props => props.styles?.width};
-		height: ${props => props.styles?.height};
-	}
-	/* color: ${props => props.styles?.color}; */
+	${({ customStyle }) => customStyle}
 `
 const SvgDynamic: FC<IProps> = props => {
 	const DynamicIcon = useMemo(
@@ -32,7 +27,7 @@ const SvgDynamic: FC<IProps> = props => {
 
 	if (!DynamicIcon) return null
 	return (
-		<SvgDynamicWrapper styles={props.styles}>
+		<SvgDynamicWrapper styles={props.styles} customStyle={props.customStyle}>
 			<DynamicIcon />
 		</SvgDynamicWrapper>
 	)

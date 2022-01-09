@@ -1,6 +1,12 @@
+import AtomImage from '@Atoms/Image'
 import { css } from '@emotion/react'
 import { InitTodosState } from '@Redux/reducers/todos'
 import { AddTodoFormWrapper } from '@Styles/pages/todo/addtodo'
+import {
+	ListItemDate,
+	ListItemDescript,
+	ListItemHeader,
+} from '@Styles/pages/todo/listtodo'
 import StateSelector from '@Types/redux/selectors/types'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -13,37 +19,59 @@ const ViewTodo: FC = () => {
 	return (
 		<div>
 			<h1>List Todos</h1>
-			{data.map((item: InitTodosState) => (
-				<Link href={`/todo/viewtodo/${item.id}`} passHref>
-					<a>
+			<AddTodoFormWrapper
+				customStyle={css`
+					display: flex;
+					flex-wrap: wrap;
+				`}
+			>
+				{data.map((item: InitTodosState) => (
+					<Link href={`/todo/viewtodo/${item.id}`} passHref>
 						<AddTodoFormWrapper
 							customStyle={css`
 								margin: 10px;
-								width: 426px;
-								height: 85px;
 								background: #ffffff;
 								box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
 								border-radius: 10px;
 								display: flex;
+								flex-direction: column;
 								align-items: flex-start;
 								justify-content: space-between;
 								padding: 10px;
+								color: #000000;
+								cursor: pointer;
 								h2,
 								p {
+									text-decoration: none;
 									margin: 0;
 								}
 							`}
 							key={item.id}
 						>
-							<div>
-								<h2>{item.title}</h2>
-								<p>{item.description}</p>
-							</div>
-							<p>{item.date}</p>
+							<ListItemHeader>
+								<div>
+									<h2>{item.title}</h2>
+									<ListItemDescript>{item.description}</ListItemDescript>
+								</div>
+								<ListItemDate>
+									<p>{item.date}</p>
+								</ListItemDate>
+							</ListItemHeader>
+							<AtomImage
+								src={item.image}
+								alt={item.title}
+								width={400}
+								height={200}
+								CustomStyle={css`
+									object-fit: cover;
+									object-position: top;
+									border-radius: 10px;
+								`}
+							/>
 						</AddTodoFormWrapper>
-					</a>
-				</Link>
-			))}
+					</Link>
+				))}
+			</AddTodoFormWrapper>
 		</div>
 	)
 }
